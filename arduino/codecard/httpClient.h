@@ -3,7 +3,7 @@
   
 */
 
-String httpRequest(WiFiClient& client, String httpMethod, String url, String host, String btnLabel, int btnFunction){
+String httpRequest(WiFiClient& client, String protocol, String httpMethod, String url, String host, int port, String btnLabel, int btnFunction){
   
   String mac = WiFi.macAddress();
   mac.replace(":", "");
@@ -11,8 +11,8 @@ String httpRequest(WiFiClient& client, String httpMethod, String url, String hos
   String contentType;
   String responseString;
 
-  client.print(httpMethod + " " + url + " HTTP/1.0\r\n" +
-               "Host: " + host + "\r\n" + 
+  client.print(httpMethod + " " + getUrlPath(protocol, url, host) + " HTTP/1.0\r\n" +
+               "Host: " + host + ":" + String(port) + "\r\n" + 
                "X-CODECARD-ID: " + mac + "\r\n" +
                "X-CODECARD-BUTTON-LABEL: " + btnLabel + "\r\n" + 
                "X-CODECARD-BUTTON-FUNCTION: " + String(btnFunction) + "\r\n" +               
@@ -113,7 +113,7 @@ String secureRequest(String host, int port, String url, String btnLabel, int btn
     return "";
   }
 
-  return httpRequest(client, httpMethod, url, host, btnLabel, btnFunction);
+  return httpRequest(client, "https", httpMethod, url, host, port, btnLabel, btnFunction);
   
 }
 
@@ -140,7 +140,7 @@ String request(String host, int port, String url, String btnLabel, int btnFuncti
     return "";
   }
 
-  return httpRequest(client, httpMethod, url, host, btnLabel, btnFunction);
+  return httpRequest(client, "http", httpMethod, url, host, port, btnLabel, btnFunction);
 }
 
 
@@ -185,8 +185,8 @@ void httpsImage(String host, int port, String url, int16_t x, int16_t y, String 
     return;
   }
   
-  secureClient.print(String("GET ") + url + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" +
+  secureClient.print(String("GET ") + getUrlPath("https", url, host) + " HTTP/1.1\r\n" +
+               "Host: " + host + ":" + String(port) + "\r\n" +
                "User-Agent: CodeCard\r\n" +
                "Connection: close\r\n\r\n");
   while (secureClient.connected())
@@ -237,8 +237,8 @@ void httpImage(String host, int port, String url, int16_t x, int16_t y, bool wit
     return;
   }
 
-  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" +
+  client.print(String("GET ") + getUrlPath("http", url, host) + " HTTP/1.1\r\n" +
+               "Host: " + host + ":" + String(port) + "\r\n" +
                "User-Agent: CodeCard\r\n" +
                "Connection: close\r\n\r\n");
   //Serial.println("request sent");

@@ -18,6 +18,22 @@ String parseValue(String data, char separator, int index) {
     return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
+String getUrlPath(String protocol, String url, String host) {
+  int pos = 0;
+  if (protocol == "http") {
+    pos += 7; // http://
+  } else {
+    pos += 8; // https://
+  }
+
+  pos += host.length();
+  String remains = url.substring(pos);
+
+  pos = remains.indexOf('/');
+  String path = remains.substring(pos);
+  return path;
+}
+
 String getBinCode(char str){
   if(str == '@') return String("010010100");
   if(str == '0') return String("000110100");
