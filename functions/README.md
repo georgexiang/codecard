@@ -104,7 +104,7 @@ Required fields:
 	"template": "template[1-11]",
 	"title": "Hello World",
 	"subtitle": "This is a subtitle",
-	"bodtext": "This is the body",
+	"bodytext": "This is the body",
 	"icon": "[see list of named icons| BMP url]",
 	"backgroundColor": "[white|black]"
 }
