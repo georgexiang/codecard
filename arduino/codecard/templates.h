@@ -83,7 +83,9 @@ void drawIcon128(int x, int y, String icon, long color){
   if (icon == "blockchain") { display.drawInvertedBitmap(x, y, blockchain128, 128, 128, color); return; }   
   if (icon == "javascript") { display.drawInvertedBitmap(x, y, javascript128, 128, 128, color); return; } 
   if (icon == "nighthacker") { display.drawInvertedBitmap(x, y, nighthacker128, 128, 128, color); return; } 
-  if (icon == "wifi") { display.drawInvertedBitmap(x, y, wifi128, 128, 128, color); return; } 
+  if (icon == "wifi") { display.drawInvertedBitmap(x, y, wifi128, 128, 128, color); return; }
+
+  if (icon == "smile") { display.drawInvertedBitmap(x, y, smile128, 128, 112, color); return; } 
 }
 
 void drawBackground(int x, int y, String backgroundImage, long color){ 
