@@ -58,7 +58,7 @@ The following instruction describes the setup and configuration of the Arduino I
 10. Establish serial connection via Arduino IDE:
    - Tools | Serial Monitor
 11. Turn on the Code Card
-12. Press and hold button `A` until 5 seconds after the following output is displayed:
+12. Press and hold button `A` until the following output is displayed:
 ```
 Shuting down...
 Shuting down...
